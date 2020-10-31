@@ -2,6 +2,26 @@ var path = require('path')
 const express = require('express')
 const mockAPIResponse = require('./mockAPI.js')
 
+
+var https = require('follow-redirects').https;
+var fs = require('fs');
+
+const dotenv = require('dotenv');
+dotenv.config();
+
+console.log(`Your API key is ${process.env.API_KEY}`);
+
+// Options from the meaning cloud API
+var options = {
+    'method': 'POST',
+    'hostname': 'api.meaningcloud.com',
+    'path': '/sentiment-2.1?key='+myApiId+'&lang=<lang>&txt=<text>&model=<model>',
+    'headers': {
+    },
+    'maxRedirects': 20
+};
+
+
 const app = express()
 
 app.use(express.static('dist'))
@@ -21,3 +41,24 @@ app.listen(8080, function () {
 app.get('/test', function (req, res) {
     res.send(mockAPIResponse)
 })
+
+
+// see https://www.meaningcloud.com/developer/sentiment-analysis/dev-tools
+var req = https.request(options, function (res) {
+    var chunks = [];
+
+    res.on("data", function (chunk) {
+      chunks.push(chunk);
+    });
+
+    res.on("end", function (chunk) {
+      var body = Buffer.concat(chunks);
+      console.log(body.toString());
+    });
+
+    res.on("error", function (error) {
+      console.error(error);
+    });
+});
+
+  req.end();
