@@ -1,7 +1,7 @@
 var path = require('path')
 const express = require('express')
 const mockAPIResponse = require('./mockAPI.js')
-
+const port = 8085
 
 var https = require('follow-redirects').https;
 var fs = require('fs');
@@ -9,7 +9,8 @@ var fs = require('fs');
 const dotenv = require('dotenv');
 dotenv.config();
 
-console.log(`Your API key is ${process.env.API_KEY}`);
+const myApiId = process.env.API_KEY
+console.log(`Your API key is ${myApiId}`);
 
 // Options from the meaning cloud API
 var options = {
@@ -34,8 +35,8 @@ app.get('/', function (req, res) {
 })
 
 // designates what port the app will listen to for incoming requests
-app.listen(8080, function () {
-    console.log('Example app listening on port 8080!')
+app.listen(port, function () {
+    console.log('Example app listening on port '+port+'!')
 })
 
 app.get('/test', function (req, res) {
