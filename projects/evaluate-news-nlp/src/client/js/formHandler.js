@@ -12,7 +12,7 @@ function handleSubmit(event) {
     // Then we call the meaningcloud API with the API key and text input by the user
     // Finally we display the restult message on the assessement of the text
     
-    const baseURL = 'http://api.meaningcloud.com/sentiment-2.1?key='
+    
     document.getElementById('result-message').innerHTML = ""
     console.log("::: Running handleSubmit :::");
     return retrieveData(formText)       
@@ -23,7 +23,7 @@ function retrieveData(userText){
         fetch('http://localhost:8085/credentials')      
         .then(data => data.text())
         .then(cred =>{console.log("cred : "+ cred);
-                        let url= baseURL+cred+'&lang=auto&txt='+userText;
+                        let url= getURL(cred,userText);
                         console.log("URL : "+url);
                         const res = fetch(url)
                             .then(res => res.json())
@@ -34,6 +34,11 @@ function retrieveData(userText){
                     }
              ) 
 }
+
+function getURL(cred,userText){
+    const baseURL = 'http://api.meaningcloud.com/sentiment-2.1?key='
+    return  baseURL+cred+'&lang=auto&txt='+userText;
+}
 // I disabled this function because of error regeneratorRuntime is not defined
 // async function getCredentials(){
     // const res = await fetch('http://localhost:8085/credentials')
@@ -43,5 +48,5 @@ function retrieveData(userText){
 // }
 
 
-export { handleSubmit }
-module.exports = retrieveData;
+export { handleSubmit,retrieveData,getURL }
+module.exports = getURL;
