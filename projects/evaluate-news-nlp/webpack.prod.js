@@ -19,10 +19,16 @@ module.exports = {
         // minimize: true,
         // minimizer: [new TerserPlugin({}), new OptimizeCSSAssetsPlugin({})],
     // },
+    output: {
+        path: path.join(__dirname, 'dist'),
+        filename: 'bundle.min.js',
+        libraryTarget: 'var',
+        library: 'Client'
+    },
     module: {
         rules: [
             {
-                test: '/\.js$/',
+                test: /\.js$/,
                 exclude: /node_modules/,
                 loader: "babel-loader"
             },
