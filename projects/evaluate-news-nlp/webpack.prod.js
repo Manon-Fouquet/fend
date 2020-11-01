@@ -5,8 +5,8 @@ const HtmlWebPackPlugin = require("html-webpack-plugin")
 
 // npm i -D mini-css-extract-plugin optimize-css-assets-webpack-plugin terser-webpack-plugin workbox-webpack-plugin
 
-// const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-// const TerserPlugin = require('terser-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 // Plugins
 const WorkboxPlugin = require('workbox-webpack-plugin');                                                       
@@ -15,10 +15,10 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
     entry: './src/client/index.js',
     mode: 'production',
-    // optimization: {
-        // minimize: true,
-        // minimizer: [new TerserPlugin({}), new OptimizeCSSAssetsPlugin({})],
-    // },
+    optimization: {
+        minimize: true,
+        minimizer: [new TerserPlugin({}), new OptimizeCSSAssetsPlugin({})],
+    },
     output: {
         path: path.join(__dirname, 'dist'),
         filename: 'bundle.min.js',
