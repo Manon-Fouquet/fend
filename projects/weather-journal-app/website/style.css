@@ -7,7 +7,7 @@ body{
     display: grid;
     grid-auto-rows: minmax(150px, auto);
     /* grid-template-columns:  */
-    height:100vh;
+    /*height:100vh;*/
     background: #f23557;
     color: #f0d43a;
     justify-content: center;
@@ -21,23 +21,24 @@ body{
 }
 
 .entry{
-    background: rgba(59, 74, 107, .4);
+    color: rgba(59, 74, 107, .4);
 }
 
 #entryHolder{
-
+    display: grid;
+    grid-auto-rows: minmax(50px, auto);
 }
 
 #date{
-
+    background: #5ef03a;
 }
 
 #temp{
-
+    background: #e4f03a;
 }
 
 #content{
-
+    background: #f0b63a;
 }
 
 .headline {
@@ -93,19 +94,18 @@ button:focus {
 }
 /* Style for Placeholder Text*/
 ::placeholder { /* Firefox, Chrome, Opera */ 
-    color: #f0d43a; 
+    color: #352903; 
     font-family: 'Oswald', sans-serif;
 
 } 
   
 :-ms-input-placeholder { /* Internet Explorer 10-11 */ 
-    color: #f0d43a; 
+    color: #352903; 
     font-family: 'Oswald', sans-serif;
 
 } 
   
 ::-ms-input-placeholder { /* Microsoft Edge */ 
-    color: #f0d43a; 
+    color: #352903; 
     font-family: 'Oswald', sans-serif;
-
 } 
