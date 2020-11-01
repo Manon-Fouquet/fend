@@ -11,7 +11,18 @@ main {
     flex: 2;
 }
 
-section {
+%section {
     max-width: 800px;
     margin: 50px auto;
 }
+
+.results{
+    @extend %section;
+    background-color:white;
+}
+
+#result-message{
+color: black;
+font-size: 20px;
+}
+
