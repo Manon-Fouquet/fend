@@ -1,4 +1,4 @@
-import { checkForName } from './js/nameChecker'
+import { checkNonEmpty } from './js/nameChecker'
 import { handleSubmit } from './js/formHandler'
 
 
@@ -8,12 +8,7 @@ import './styles/form.scss'
 import './styles/footer.scss'
 import './styles/header.scss'
 
-console.log(checkForName);
-
-alert("I EXIST")
-console.log("CHANGE!!");
-
 export{
-    checkForName,
+    checkNonEmpty,
     handleSubmit
     }
