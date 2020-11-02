@@ -1,12 +1,13 @@
-
-
 function handleSubmit(event) {
     event.preventDefault()
 
     // check what text was put into the form field
-    let formText = document.getElementById('name')
+    // If test or empty, reset with default text
+    let inputElement = document.getElementById('name')
+    let formText = inputElement.value
     formText = Client.checkNonEmpty(formText)
-
+    inputElement.value = formText
+    
     
     // Production mode: we fetch the user API key and it's retrieved from the .env file
     // Then we call the meaningcloud API with the API key and text input by the user
@@ -39,6 +40,7 @@ function getURL(cred,userText){
     const baseURL = 'http://api.meaningcloud.com/sentiment-2.1?key='
     return  baseURL+cred+'&lang=auto&txt='+userText;
 }
+
 // I disabled this function because of error regeneratorRuntime is not defined
 // async function getCredentials(){
     // const res = await fetch('http://localhost:8085/credentials')
