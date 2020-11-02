@@ -1,10 +1,12 @@
 function checkNonEmpty(inputText) {
-    const defaultText = 
+    const defaultText = getDefaultText()
     console.log("::: Running checkNonEmpty :::");
-    if(inputText==="" || inputText==="test") {
+    if(inputText.value==="" || inputText.value==="test") {
         alert("Running default test")
-        return getDefaultText();
+        inputText.value = defaultText   
+        return defaultText;
     }
+    inputText.value = inputText.value
     return inputText
 }
 
@@ -13,4 +15,3 @@ function getDefaultText(){
     }
 
 export {checkNonEmpty}
-//module.exports = getDefaultText

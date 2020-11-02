@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest",
     "start": "node src/server/server.js",
     "build-prod": "webpack --config webpack.prod.js",
     "build-prod-and-start": "webpack --config webpack.prod.js && node src/server/server.js",
