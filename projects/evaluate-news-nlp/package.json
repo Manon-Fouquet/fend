@@ -1,5 +1,5 @@
 {
-    "name": "nlp-project",
+  "name": "nlp-project",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.5.4",
+    "@babel/plugin-transform-modules-commonjs": "^7.12.1",
     "@babel/preset-env": "^7.5.4",
     "babel-loader": "^8.0.6",
     "body-parser": "^1.19.0",

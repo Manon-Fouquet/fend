@@ -13,4 +13,4 @@ function getDefaultText(){
     }
 
 export {checkNonEmpty}
-module.exports = getDefaultText
+//module.exports = getDefaultText

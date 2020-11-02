@@ -49,4 +49,4 @@ function getURL(cred,userText){
 
 
 export { handleSubmit,retrieveData,getURL }
-module.exports = getURL;
+//module.exports = getURL;
