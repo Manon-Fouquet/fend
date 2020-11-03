@@ -8,46 +8,34 @@ function handleSubmit(event) {
     formText = Client.checkNonEmpty(formText)
     inputElement.value = formText
     
-    
-    // Production mode: we fetch the user API key and it's retrieved from the .env file
-    // Then we call the meaningcloud API with the API key and text input by the user
-    // Finally we display the restult message on the assessement of the text
-    
-    
+   
     document.getElementById('result-message').innerHTML = ""
-    console.log("::: Running handleSubmit :::");
-    return retrieveData(formText)       
+    // console.log("::: Running handleSubmit with text "+formText+":::");
+    return retrieveData(formText)             
 }
 
 function retrieveData(userText){
-    const res=
-        fetch('http://localhost:8085/credentials')      
-        .then(data => data.text())
-        .then(cred =>{console.log("cred : "+ cred);
-                        let url= getURL(cred,userText);
-                        console.log("URL : "+url);
-                        const res = fetch(url)
-                            .then(res => res.json())
-                            .then(res=> {
-                                // console.log('Received data '+JSON.stringify(res));         
-                                document.getElementById('result-message').innerHTML = "The text is "+res.subjectivity.toLowerCase()+", "+res.irony.toLowerCase()+" and expresses "+res.agreement.toLowerCase()+"."     ;
-                                })
-                    }
-             ) 
+    const res=fetch('http://localhost:8085/analyse', 
+    {
+        credentials: 'same-origin',
+        method: 'POST',
+        headers: 
+        {
+        'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({formText: userText})
+    })
+      .then(res => res.json())
+      .then(res=> 
+      {
+        console.log('Received data '+JSON.stringify(res));         
+         document.getElementById('result-message').innerHTML =buildMessage(res)
+      })  
 }
 
-function getURL(cred,userText){
-    const baseURL = 'http://api.meaningcloud.com/sentiment-2.1?key='
-    return  baseURL+cred+'&lang=auto&txt='+userText;
-}
+function buildMessage(data){
+   return "The text is "+data.subjectivity.toLowerCase()+", "+data.irony.toLowerCase()+" and expresses "+data.agreement.toLowerCase()+".";
+    }
+    
 
-// I disabled this function because of error regeneratorRuntime is not defined
-// async function getCredentials(){
-    // const res = await fetch('http://localhost:8085/credentials')
-        // .then(res=>res.json())
-        // .then((res)=>{console.log('Received appID = '+res.apiID); return res.apiID});
-    // return res;
-// }
-
-
-export { handleSubmit,retrieveData,getURL }
+export { handleSubmit,retrieveData,buildMessage }
